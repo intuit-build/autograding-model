@@ -35,7 +35,7 @@ import java.util.stream.Stream;
  * @author Eva-Maria Zeintl
  * @author Ullrich Hafner
  */
-@SuppressWarnings({"PMD.GodClass", "PMD.CyclomaticComplexity", "PMD.ExcessivePublicCount", "PMD.CouplingBetweenObjects"})
+@SuppressWarnings({"PMD.GodClass", "PMD.CouplingBetweenObjects"})
 public final class AggregatedScore implements Serializable {
     @Serial
     private static final long serialVersionUID = 3L;
@@ -334,7 +334,7 @@ public final class AggregatedScore implements Serializable {
      *         the configurations to grade
      */
     public void gradeAnalysis(final ToolParser factory,
-                              final List<AnalysisConfiguration> analysisConfigurations) {
+            final List<AnalysisConfiguration> analysisConfigurations) {
         grade(factory, analysisConfigurations, new AnalysisScoreBuilder(), analysisScores::add);
     }
 
@@ -346,7 +346,7 @@ public final class AggregatedScore implements Serializable {
      * @param coverageConfigurations
      *         the coverage configurations to grade     */
     public void gradeCoverage(final ToolParser factory,
-                              final List<CoverageConfiguration> coverageConfigurations) {
+            final List<CoverageConfiguration> coverageConfigurations) {
         grade(factory, coverageConfigurations, new CoverageScoreBuilder(), coverageScores::add);
     }
 
@@ -375,7 +375,7 @@ public final class AggregatedScore implements Serializable {
     }
 
     private <S extends Score<S, C>, C extends Configuration> void grade(final ToolParser factory,
-                                                                        final List<C> configurations, final ScoreBuilder<S, C> builder, final Consumer<S> setter) {
+            final List<C> configurations, final ScoreBuilder<S, C> builder, final Consumer<S> setter) {
         log.logInfo("Processing %d %s configuration(s)", configurations.size(), builder.getType());
 
         for (var configuration : configurations) {
